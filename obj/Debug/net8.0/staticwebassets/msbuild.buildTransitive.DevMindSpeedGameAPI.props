@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\DevMindSpeedGameAPI.props" />
-</Project>
