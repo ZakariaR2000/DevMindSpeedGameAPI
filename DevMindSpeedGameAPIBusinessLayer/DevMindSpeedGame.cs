@@ -71,7 +71,6 @@ namespace DevMindSpeedGameAPIBusinessLayer
         {
             return new GameSession
             {
-                // GameSessionID يتم إنشاؤه بواسطة قاعدة البيانات إذا كان عمودًا تلقائي التوليد (IDENTITY)
                 PlayerName = playerName,
                 Difficulty = difficulty,
                 TimeStarted = DateTime.UtcNow,
