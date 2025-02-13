@@ -24,10 +24,8 @@ namespace DevMindSpeedGameAPI.Controllers
                 return BadRequest("Invalid request. PlayerName must not be empty, and Difficulty must be between 1 and 4.");
             }
 
-            // إنشاء جلسة جديدة
             var gameSession = _gameLogic.StartNewGame(request.PlayerName, request.Difficulty);
 
-            // توليد معادلة رياضية عشوائية
             var (question, answer) = _gameLogic.GenerateMathQuestion(request.Difficulty);
 
             gameSession.CurrentQuestion = question;
