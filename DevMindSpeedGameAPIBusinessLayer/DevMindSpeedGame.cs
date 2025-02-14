@@ -1,22 +1,8 @@
 using DevMindSpeedGameDataAccessLayer;
-using System;
 
 namespace DevMindSpeedGameAPIBusinessLayer
 {
-    public class GameSession
-    {
-        public Guid GameSessionID { get; set; } 
-        public string PlayerName { get; set; }
-        public int Difficulty { get; set; }
-        public int CurrentScore { get; set; }
-        public int TotalQuestions { get; set; }
-        public double TotalTimeSpent { get; set; }
-        public string CurrentQuestion { get; set; }
-        public double CurrentAnswer { get; set; }
-        public DateTime TimeStarted { get; set; }
-    }
-
-
+    
     public class DevMindSpeedGame
     {
         private DevMindSpeedGameData _historyDataAccess = new DevMindSpeedGameData();
@@ -34,7 +20,7 @@ namespace DevMindSpeedGameAPIBusinessLayer
             }
         }
 
-        public List<GameHistory> GetGameHistory(Guid gameSessionId)
+        public List<clsGameHistory> GetGameHistory(Guid gameSessionId)
         {
             try
             {
@@ -48,31 +34,9 @@ namespace DevMindSpeedGameAPIBusinessLayer
         }
        
 
-
-        public (string Question, float Answer) GenerateMathQuestion(int difficulty)
+        public clsGameSession StartNewGame(string playerName, int difficulty)
         {
-            var random = new Random();
-            var operations = new[] { "+", "-", "*", "/" };
-
-            int operandCount = difficulty + 1;
-            double maxDigit = Math.Pow(10, difficulty);
-
-            var numbers = Enumerable.Range(0, operandCount)
-                                    .Select(_ => random.Next(1, (int)maxDigit))
-                                    .Select(num => (double)num)
-                                    .ToArray();
-            var operation = operations[random.Next(operations.Length)];
-
-            string question = string.Join($" {operation} ", numbers);
-            var result = new System.Data.DataTable().Compute(question, null);
-            float answer = Convert.ToSingle(result);
-
-            return (question, answer);
-        }
-
-        public GameSession StartNewGame(string playerName, int difficulty)
-        {
-            return new GameSession
+            return new clsGameSession
             {
                 GameSessionID = Guid.NewGuid(), 
                 PlayerName = playerName,
