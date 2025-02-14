@@ -1,3 +1,4 @@
+using DevMindSpeedGameAPI.General;
 using DevMindSpeedGameAPI.Models;
 using DevMindSpeedGameAPIBusinessLayer;
 using Microsoft.AspNetCore.Http;
@@ -23,7 +24,7 @@ namespace DevMindSpeedGameAPI.Controllers
             var sessionId = _gameLogic.StartNewGame(playerName, difficulty).GameSessionID; // استخدم GameSessionID مباشرةً
 
             // توليد السؤال والإجابة
-            var (question, answer) = _gameLogic.GenerateMathQuestion(difficulty);
+            var (question, answer) = clsGenerateMath.GenerateMathQuestion(difficulty);
 
             return Ok(new
             {
@@ -42,7 +43,7 @@ namespace DevMindSpeedGameAPI.Controllers
                 return BadRequest("Invalid answer. Please provide a valid numeric answer.");
             }
 
-            var gameSession = new GameSession();
+            var gameSession = new clsGameSession();
             if (gameSession == null)
             {
                 return NotFound($"Game session with ID {game_id} not found.");
@@ -60,7 +61,7 @@ namespace DevMindSpeedGameAPI.Controllers
 
             _gameLogic.SaveGameHistory(game_id, gameSession.CurrentQuestion, request.Answer, isCorrect, (float)timeTaken);
 
-            var (newQuestion, newAnswer) = _gameLogic.GenerateMathQuestion(gameSession.Difficulty);
+            var (newQuestion, newAnswer) = clsGenerateMath.GenerateMathQuestion(gameSession.Difficulty);
             gameSession.CurrentQuestion = newQuestion;
             gameSession.CurrentAnswer = newAnswer;
 
@@ -77,7 +78,7 @@ namespace DevMindSpeedGameAPI.Controllers
         public IActionResult GetGameStatus(Guid game_id)
         {
             // جلب الجلسة (استخدام DataAccessLayer)
-            var gameSession = new GameSession(); // استبدل هذا بجلب البيانات من قاعدة البيانات
+            var gameSession = new clsGameSession(); // استبدل هذا بجلب البيانات من قاعدة البيانات
             if (gameSession == null)
             {
                 return NotFound($"Game session with ID {game_id} not found.");
@@ -107,10 +108,6 @@ namespace DevMindSpeedGameAPI.Controllers
 
     }
 
-    public class StartGameRequest
-    {
-        public string PlayerName { get; set; }
-        public int Difficulty { get; set; }
-    }
+    
 }
 
