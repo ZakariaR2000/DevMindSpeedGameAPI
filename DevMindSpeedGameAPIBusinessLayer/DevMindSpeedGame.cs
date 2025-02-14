@@ -5,13 +5,13 @@ namespace DevMindSpeedGameAPIBusinessLayer
     
     public class DevMindSpeedGame
     {
-        private DevMindSpeedGameData _historyDataAccess = new DevMindSpeedGameData();
+       // private DevMindSpeedGameData _historyDataAccess = new DevMindSpeedGameData();
 
         public void SaveGameHistory(Guid gameSessionId, string question, float answer, bool correct, float timeTaken)
         {
             try
             {
-                _historyDataAccess.AddGameHistory(gameSessionId, question, answer, correct, timeTaken);
+                DevMindSpeedGameData.AddGameHistory(gameSessionId, question, answer, correct, timeTaken);
             }
             catch (Exception ex)
             {
@@ -24,7 +24,7 @@ namespace DevMindSpeedGameAPIBusinessLayer
         {
             try
             {
-                return _historyDataAccess.GetGameHistoryBySessionId(gameSessionId);
+                return DevMindSpeedGameData.GetGameHistoryBySessionId(gameSessionId);
             }
             catch (Exception ex)
             {
@@ -32,13 +32,15 @@ namespace DevMindSpeedGameAPIBusinessLayer
                 throw;
             }
         }
-       
+
 
         public clsGameSession StartNewGame(string playerName, int difficulty)
         {
+            var sessionId = Guid.NewGuid(); // إنشاء GUID في BLL
+            DevMindSpeedGameData.AddGameSession(sessionId, playerName, difficulty);
             return new clsGameSession
             {
-                GameSessionID = Guid.NewGuid(), 
+                GameSessionID = sessionId,
                 PlayerName = playerName,
                 Difficulty = difficulty,
                 TimeStarted = DateTime.UtcNow,
@@ -46,6 +48,7 @@ namespace DevMindSpeedGameAPIBusinessLayer
                 TotalQuestions = 0
             };
         }
+
 
 
 
