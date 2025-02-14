@@ -1,4 +1,4 @@
-﻿using DevMindSpeedGameAPI.Models;
+using DevMindSpeedGameAPI.Models;
 using DevMindSpeedGameAPIBusinessLayer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,32 +17,25 @@ namespace DevMindSpeedGameAPI.Controllers
         }
 
         [HttpPost("start")]
-        public IActionResult StartGame([FromBody] StartGameRequest request)
+        public IActionResult StartGame(string playerName, int difficulty)
         {
-            if (string.IsNullOrWhiteSpace(request.PlayerName) || request.Difficulty < 1 || request.Difficulty > 4)
-            {
-                return BadRequest("Invalid request. PlayerName must not be empty, and Difficulty must be between 1 and 4.");
-            }
+            // استدعاء BLL لإنشاء جلسة جديدة
+            var sessionId = _gameLogic.StartNewGame(playerName, difficulty).GameSessionID; // استخدم GameSessionID مباشرةً
 
-            var gameSession = _gameLogic.StartNewGame(request.PlayerName, request.Difficulty);
-
-            var (question, answer) = _gameLogic.GenerateMathQuestion(request.Difficulty);
-
-            gameSession.CurrentQuestion = question;
-            gameSession.CurrentAnswer = answer;
+            // توليد السؤال والإجابة
+            var (question, answer) = _gameLogic.GenerateMathQuestion(difficulty);
 
             return Ok(new
             {
-                Message = $"Hello {request.PlayerName}, find your submit API URL below.",
-                SubmitUrl = $"/api/game/{gameSession.GameSessionID}/submit",
-                Question = question,
-                TimeStarted = gameSession.TimeStarted
+                message = $"Hello {playerName}, find your submit API URL below.",
+                submitUrl = $"/api/game/{sessionId}/submit", // استخدم sessionId هنا
+                question = question,
+                timeStarted = DateTime.UtcNow
             });
         }
 
-
         [HttpPost("{game_id}/submit")]
-        public IActionResult SubmitAnswer(int game_id, [FromBody] SubmitAnswerRequest request)
+        public IActionResult SubmitAnswer(Guid game_id, [FromBody] SubmitAnswerRequest request)
         {
             if (request == null || float.IsNaN(request.Answer))
             {
@@ -81,16 +74,19 @@ namespace DevMindSpeedGameAPI.Controllers
         }
 
         [HttpGet("{game_id}/status")]
-        public IActionResult GetGameStatus(int game_id)
+        public IActionResult GetGameStatus(Guid game_id)
         {
-            var gameSession = new GameSession(); 
+            // جلب الجلسة (استخدام DataAccessLayer)
+            var gameSession = new GameSession(); // استبدل هذا بجلب البيانات من قاعدة البيانات
             if (gameSession == null)
             {
                 return NotFound($"Game session with ID {game_id} not found.");
             }
 
+            // جلب تاريخ الإجابات
             var history = _gameLogic.GetGameHistory(game_id);
 
+            // استجابة
             return Ok(new
             {
                 Name = gameSession.PlayerName,
@@ -117,5 +113,4 @@ namespace DevMindSpeedGameAPI.Controllers
         public int Difficulty { get; set; }
     }
 }
-
 
