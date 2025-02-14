@@ -2,21 +2,11 @@ using Microsoft.Data.SqlClient;
 
 namespace DevMindSpeedGameDataAccessLayer
 {
-    public class GameHistory
-    {
-        public int GameHistoryID { get; set; }
-        public Guid GameSessionID { get; set; } 
-        public string Question { get; set; }
-        public float Answer { get; set; }
-        public bool Correct { get; set; }
-        public float TimeTaken { get; set; }
-        public DateTime CreatedAt { get; set; }
-    }
-
-
+    
     public class DevMindSpeedGameData
     {
         private string _connectionString = clsDataAccessSettings.ConnectionString;
+
 
         public Guid AddGameSession(string playerName, int difficulty)
         {
@@ -59,9 +49,9 @@ namespace DevMindSpeedGameDataAccessLayer
             }
         }
 
-        public List<GameHistory> GetGameHistoryBySessionId(Guid gameSessionId)
+        public List<clsGameHistory> GetGameHistoryBySessionId(Guid gameSessionId)
         {
-            List<GameHistory> historyList = new List<GameHistory>();
+            List<clsGameHistory> historyList = new List<clsGameHistory>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
@@ -73,7 +63,7 @@ namespace DevMindSpeedGameDataAccessLayer
                     {
                         while (reader.Read())
                         {
-                            historyList.Add(new GameHistory
+                            historyList.Add(new clsGameHistory
                             {
                                 GameHistoryID = reader.GetInt32(0),
                                 GameSessionID = reader.GetGuid(1),
