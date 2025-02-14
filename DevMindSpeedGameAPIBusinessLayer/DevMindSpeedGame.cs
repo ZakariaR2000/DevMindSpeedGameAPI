@@ -1,26 +1,27 @@
-﻿using DevMindSpeedGameDataAccessLayer;
+using DevMindSpeedGameDataAccessLayer;
 using System;
 
 namespace DevMindSpeedGameAPIBusinessLayer
 {
     public class GameSession
     {
-        public int GameSessionID { get; set; }
+        public Guid GameSessionID { get; set; } 
         public string PlayerName { get; set; }
         public int Difficulty { get; set; }
         public int CurrentScore { get; set; }
         public int TotalQuestions { get; set; }
-        public TimeSpan TotalTimeSpent { get; set; }
+        public double TotalTimeSpent { get; set; }
         public string CurrentQuestion { get; set; }
-        public float CurrentAnswer { get; set; }
+        public double CurrentAnswer { get; set; }
         public DateTime TimeStarted { get; set; }
     }
+
 
     public class DevMindSpeedGame
     {
         private DevMindSpeedGameData _historyDataAccess = new DevMindSpeedGameData();
 
-        public void SaveGameHistory(int gameSessionId, string question, float answer, bool correct, float timeTaken)
+        public void SaveGameHistory(Guid gameSessionId, string question, float answer, bool correct, float timeTaken)
         {
             try
             {
@@ -33,7 +34,7 @@ namespace DevMindSpeedGameAPIBusinessLayer
             }
         }
 
-        public List<GameHistory> GetGameHistory(int gameSessionId)
+        public List<GameHistory> GetGameHistory(Guid gameSessionId)
         {
             try
             {
@@ -45,18 +46,20 @@ namespace DevMindSpeedGameAPIBusinessLayer
                 throw;
             }
         }
+       
+
 
         public (string Question, float Answer) GenerateMathQuestion(int difficulty)
         {
             var random = new Random();
             var operations = new[] { "+", "-", "*", "/" };
 
-            int operandCount = difficulty + 1; 
-            double maxDigit = Math.Pow(10, difficulty); 
+            int operandCount = difficulty + 1;
+            double maxDigit = Math.Pow(10, difficulty);
 
             var numbers = Enumerable.Range(0, operandCount)
                                     .Select(_ => random.Next(1, (int)maxDigit))
-                                    .Select(num => (double)num) 
+                                    .Select(num => (double)num)
                                     .ToArray();
             var operation = operations[random.Next(operations.Length)];
 
@@ -71,6 +74,7 @@ namespace DevMindSpeedGameAPIBusinessLayer
         {
             return new GameSession
             {
+                GameSessionID = Guid.NewGuid(), 
                 PlayerName = playerName,
                 Difficulty = difficulty,
                 TimeStarted = DateTime.UtcNow,
@@ -78,6 +82,7 @@ namespace DevMindSpeedGameAPIBusinessLayer
                 TotalQuestions = 0
             };
         }
+
 
 
     }
