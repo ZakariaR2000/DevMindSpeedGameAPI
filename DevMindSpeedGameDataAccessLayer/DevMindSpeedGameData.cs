@@ -3,35 +3,30 @@ using Microsoft.Data.SqlClient;
 namespace DevMindSpeedGameDataAccessLayer
 {
     
-    public class DevMindSpeedGameData
+    static public class DevMindSpeedGameData
     {
-        private string _connectionString = clsDataAccessSettings.ConnectionString;
 
 
-        public Guid AddGameSession(string playerName, int difficulty)
+        public static void AddGameSession(Guid sessionId, string playerName, int difficulty)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 conn.Open();
                 string query = @"INSERT INTO GameSessions (GameSessionID, PlayerName, Difficulty, CurrentScore, TotalQuestions, TotalTimeSpent, TimeStarted)
-                         VALUES (@GameSessionID, @PlayerName, @Difficulty, 0, 0, 0, @TimeStarted)";
+                             VALUES (@GameSessionID, @PlayerName, @Difficulty, 0, 0, 0, @TimeStarted)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    Guid newSessionId = Guid.NewGuid(); 
-                    cmd.Parameters.AddWithValue("@GameSessionID", newSessionId);
+                    cmd.Parameters.AddWithValue("@GameSessionID", sessionId);
                     cmd.Parameters.AddWithValue("@PlayerName", playerName);
                     cmd.Parameters.AddWithValue("@Difficulty", difficulty);
                     cmd.Parameters.AddWithValue("@TimeStarted", DateTime.UtcNow);
                     cmd.ExecuteNonQuery();
-
-                    return newSessionId; 
                 }
             }
         }
-
-        public void AddGameHistory(Guid gameSessionId, string question, float answer, bool correct, float timeTaken)
+        static public void AddGameHistory(Guid gameSessionId, string question, float answer, bool correct, float timeTaken)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 conn.Open();
                 string query = @"INSERT INTO GameHistory (GameSessionID, Question, Answer, Correct, TimeTaken, CreatedAt)
@@ -49,10 +44,10 @@ namespace DevMindSpeedGameDataAccessLayer
             }
         }
 
-        public List<clsGameHistory> GetGameHistoryBySessionId(Guid gameSessionId)
+        static public List<clsGameHistory> GetGameHistoryBySessionId(Guid gameSessionId)
         {
             List<clsGameHistory> historyList = new List<clsGameHistory>();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 conn.Open();
                 string query = "SELECT GameHistoryID, GameSessionID, Question, Answer, Correct, TimeTaken, CreatedAt FROM GameHistory WHERE GameSessionID = @GameSessionID";
