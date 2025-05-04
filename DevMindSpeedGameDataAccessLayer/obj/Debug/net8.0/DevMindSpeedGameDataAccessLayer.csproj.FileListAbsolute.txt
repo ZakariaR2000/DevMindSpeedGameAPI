@@ -1,0 +1,12 @@
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\bin\Debug\net8.0\DevMindSpeedGameDataAccessLayer.deps.json
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\bin\Debug\net8.0\DevMindSpeedGameDataAccessLayer.dll
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\bin\Debug\net8.0\DevMindSpeedGameDataAccessLayer.pdb
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\DevMindSpeedGameDataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\DevMindSpeedGameDataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\DevMindSpeedGameDataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\DevMindSpeedGameDataAccessLayer.AssemblyInfo.cs
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\DevMindSpeedGameDataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\DevMindSpeedGameDataAccessLayer.dll
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\refint\DevMindSpeedGameDataAccessLayer.dll
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\DevMindSpeedGameDataAccessLayer.pdb
+C:\Users\zakar\source\repos\DevMindSpeedGameDataAccessLayer\obj\Debug\net8.0\ref\DevMindSpeedGameDataAccessLayer.dll
