@@ -35,7 +35,7 @@ namespace DevMindSpeedGameAPI.Controllers
             var (question, answer) = clsMathOperation.GenerateMathQuestion(difficulty);
 
             _sessionQuestions[session.GameSessionID] = (question, answer);
-            _sessionMemory[session.GameSessionID] = session; //
+            _sessionMemory[session.GameSessionID] = session; 
 
             return Ok(new
             {
