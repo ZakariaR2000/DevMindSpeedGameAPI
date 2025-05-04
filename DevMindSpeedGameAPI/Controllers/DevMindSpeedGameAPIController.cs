@@ -12,7 +12,7 @@ namespace DevMindSpeedGameAPI.Controllers
         private readonly DevMindSpeedGame _gameLogic;
 
         private static Dictionary<Guid, (string Question, float Answer)> _sessionQuestions = new();
-        private static Dictionary<Guid, clsGameSession> _sessionMemory = new(); // لتتبع التقدم
+        private static Dictionary<Guid, clsGameSession> _sessionMemory = new();
 
 
         public DevMindSpeedGameAPIController()
@@ -35,7 +35,7 @@ namespace DevMindSpeedGameAPI.Controllers
             var (question, answer) = clsMathOperation.GenerateMathQuestion(difficulty);
 
             _sessionQuestions[session.GameSessionID] = (question, answer);
-            _sessionMemory[session.GameSessionID] = session; // 🟢 خزّن الجلسة
+            _sessionMemory[session.GameSessionID] = session; //
 
             return Ok(new
             {
@@ -73,7 +73,7 @@ namespace DevMindSpeedGameAPI.Controllers
 
             var (newQuestion, newAnswer) = clsMathOperation.GenerateMathQuestion(gameSession.Difficulty);
             _sessionQuestions[game_id] = (newQuestion, newAnswer);
-            _sessionMemory[game_id] = gameSession; // 🟢 خزّن التحديث
+            _sessionMemory[game_id] = gameSession; // 
 
             return Ok(new
             {
