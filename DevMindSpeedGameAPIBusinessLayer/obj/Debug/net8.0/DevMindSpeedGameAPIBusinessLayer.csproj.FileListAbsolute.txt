@@ -1,0 +1,15 @@
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\bin\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.deps.json
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\bin\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.dll
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\bin\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.pdb
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\bin\Debug\net8.0\DevMindSpeedGameDataAccessLayer.dll
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\bin\Debug\net8.0\DevMindSpeedGameDataAccessLayer.pdb
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.csproj.AssemblyReference.cache
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.AssemblyInfoInputs.cache
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.AssemblyInfo.cs
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\DevMindS.40EB2B3B.Up2Date
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.dll
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\refint\DevMindSpeedGameAPIBusinessLayer.dll
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\DevMindSpeedGameAPIBusinessLayer.pdb
+C:\Users\zakar\source\repos\DevMindSpeedGameAPIBusinessLayer\obj\Debug\net8.0\ref\DevMindSpeedGameAPIBusinessLayer.dll
